@@ -7,7 +7,7 @@ import { articles } from "@/lib/articles"
 
 export const metadata = {
   title: "База знаний",
-  description: "Полезные статьи о КОД 95, работе в Европе и оформлении документов для водителей.",
+  description: "Полезные статьи о КОД 95, работе в Европе и оформлении документов для водителей.",
   alternates: { canonical: "/knowledge" },
 }
 

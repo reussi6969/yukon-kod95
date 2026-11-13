@@ -45,7 +45,8 @@ export function LeadModal() {
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail
-      setTitle(detail?.title || "Получите консультацию")
+      // Неразрывный пробел, чтобы «КОД 95» не разрывался при переносе строки
+      setTitle(String(detail?.title || "Получите консультацию").replace(/(КОД|Код) 95/g, "$1 95"))
       setOpen(true)
       setLeaving(false)
       setStatus("idle")
@@ -122,7 +123,7 @@ setName(capitalized)
           <div className="px-5 pt-5 pb-4 sm:px-7 sm:pt-7 sm:pb-5">
             <div className="flex items-start justify-between">
               <div>
-                <h2 className="font-serif text-2xl font-bold text-primary-foreground sm:text-3xl sm:text-4xl">{title}</h2>
+                <h2 className="font-serif text-2xl font-bold leading-tight text-primary-foreground sm:text-3xl">{title}</h2>
                 <p className="mt-1.5 text-sm leading-relaxed text-primary-foreground/75 sm:text-base sm:text-lg">
                   {"Оставьте свои контакты, мы с вами свяжемся!"}
                 </p>

@@ -6,10 +6,10 @@ import { LeadButton } from "@/components/lead-button"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Короткий курс КОД 95 — 799 zł",
-  description: "Короткий курс КОД 95 для водителей с категорией C/D, выданной до 09.09.2009. Онлайн-обучение, 1 визит в Краков, без экзамена. 799 zł.",
+  title: "Короткий курс КОД 95 — 799 zł",
+  description: "Короткий курс КОД 95 для водителей с категорией C/D, выданной до 09.09.2009. Онлайн-обучение, 1 визит в Краков, без экзамена. 799 zł.",
   alternates: { canonical: "/services/korotkiy-kurs" },
-  openGraph: { title: "Короткий курс КОД 95 — 799 zł", description: "Короткий курс КОД 95 для водителей с категорией C/D, выданной до 09.09.2009. Онлайн-обучение, 1 визит в Краков, без экзамена. 799 zł.", url: "/services/korotkiy-kurs" },
+  openGraph: { title: "Короткий курс КОД 95 — 799 zł", description: "Короткий курс КОД 95 для водителей с категорией C/D, выданной до 09.09.2009. Онлайн-обучение, 1 визит в Краков, без экзамена. 799 zł.", url: "/services/korotkiy-kurs" },
 }
 const breatheClass = "btn-breathe"
 
@@ -28,10 +28,10 @@ export default function KorotkiyKursPage() {
           <div className="mx-auto max-w-4xl px-4 text-center">
             <p className="mb-4 font-mono text-sm font-bold uppercase tracking-widest text-accent">Услуги</p>
             <h1 className="font-serif text-4xl font-bold text-primary-foreground sm:text-5xl md:text-6xl">
-              Короткий курс КОД 95
+              Короткий курс КОД 95
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-primary-foreground/80">
-              Если у вас есть категория C или D, но получены они давно — вы почти наверняка можете оформить Код 95 по короткому курсу. Без долгой учёбы, без экзамена.
+              Если у вас есть категория C или D, но получены они давно — вы почти наверняка можете оформить Код 95 по короткому курсу. Без долгой учёбы, без экзамена.
             </p>
            <div className="mt-6 mb-2">
               <p className="font-sans text-3xl font-semibold text-white/90">
@@ -40,7 +40,7 @@ export default function KorotkiyKursPage() {
             </div>
             <div className="mt-4">
               <LeadButton
-                title="Короткий курс КОД 95"
+                title="Короткий курс КОД 95"
                 className="rounded-xl bg-accent px-10 py-4 text-base font-semibold text-white shadow-md transition-all btn-breathe hover:scale-105 hover:bg-[#3670c2] hover:shadow-xl"
               >
                 Записаться на курс
@@ -54,7 +54,7 @@ export default function KorotkiyKursPage() {
           <div className="overflow-hidden rounded-2xl shadow-xl bg-secondary aspect-[16/7]">
             <img
               src="/images/kod-95-1.webp"
-              alt="Короткий курс КОД 95"
+              alt="Короткий курс КОД 95"
               className="h-full w-full object-cover"
             />
           </div>
@@ -62,12 +62,12 @@ export default function KorotkiyKursPage() {
 
         <div className="mx-auto max-w-4xl px-4 py-14 md:py-20">
 
-          {/* Что такое Код 95 */}
+          {/* Что такое Код 95 */}
           <section className="mb-14">
-            <h2 className="font-serif text-3xl font-bold text-foreground mb-4">Что такое Код 95 и зачем он нужен</h2>
+            <h2 className="font-serif text-3xl font-bold text-foreground mb-4">Что такое Код 95 и зачем он нужен</h2>
             <div className="h-1 w-16 rounded-full bg-accent mb-6" />
             <p className="text-lg leading-relaxed text-muted-foreground mb-4">
-              Код 95 — это квалификационная отметка в водительском удостоверении. Без неё работать наёмным водителем грузовика или автобуса в странах Евросоюза официально нельзя.
+              Код 95 — это квалификационная отметка в водительском удостоверении. Без неё работать наёмным водителем грузовика или автобуса в странах Евросоюза официально нельзя.
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
               Документ подтверждает, что водитель прошёл профессиональную подготовку и знает европейские стандарты безопасности. Это не экзамен на права — это обязательное условие для легальной работы по найму в ЕС.
@@ -120,7 +120,7 @@ export default function KorotkiyKursPage() {
           </section>
 <div className="mb-10 flex justify-center">
             <LeadButton
-              title="Короткий курс КОД 95"
+              title="Короткий курс КОД 95"
               className="rounded-xl bg-accent px-10 py-4 text-base font-semibold text-white shadow-md transition-all btn-breathe hover:scale-105 hover:bg-[#3670c2] hover:shadow-xl"
             >
               Оставить заявку
@@ -160,7 +160,7 @@ export default function KorotkiyKursPage() {
             <div className="overflow-hidden rounded-2xl shadow-xl bg-secondary aspect-[16/7] flex items-center justify-center border border-border">
   <img 
     src="/images/kod-95-2.webp" 
-    alt="Код 95" 
+    alt="Код 95" 
     className="w-full h-full object-cover" 
   />
 </div>
@@ -199,7 +199,7 @@ export default function KorotkiyKursPage() {
             <div className="h-1 w-16 rounded-full bg-accent mb-6" />
             <div className="rounded-2xl bg-foreground p-8">
               <p className="text-lg leading-relaxed text-primary-foreground/90 mb-4">
-                После окончания курса вы получаете удостоверение Код 95. На его основании в ваши права вносится отметка с датой действия.
+                После окончания курса вы получаете удостоверение Код 95. На его основании в ваши права вносится отметка с датой действия.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-6">
                 <div className="flex-1 rounded-xl bg-white/10 px-5 py-4 text-center">
@@ -228,7 +228,7 @@ export default function KorotkiyKursPage() {
               Напишите нам — ответим в течение нескольких минут и расскажем, что конкретно нужно в вашем случае.
             </p>
             <LeadButton
-              title="Короткий курс КОД 95"
+              title="Короткий курс КОД 95"
               className="rounded-xl bg-accent px-10 py-4 text-base font-semibold text-white shadow-md transition-all hover:scale-105 hover:bg-[#3670c2] hover:shadow-xl"
             >
               Оставить заявку

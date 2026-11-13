@@ -83,7 +83,7 @@ export default function PriglashenieNaVizuPage() {
                 "Планируете приехать в Польшу на работу, но ещё находитесь на родине",
                 "Не имеете официального контракта с польским работодателем",
                 "Хотите оформить визу через консульство Польши в своей стране",
-                "Планируете пройти обучение Код 95 или оформить другие документы по приезде",
+                "Планируете пройти обучение Код 95 или оформить другие документы по приезде",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-4 rounded-xl border border-border bg-background px-5 py-4">
                   <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10">

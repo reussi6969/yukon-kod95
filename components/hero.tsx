@@ -30,7 +30,7 @@ export function Hero() {
         className="relative z-10 mx-auto max-w-5xl px-4 py-8 -mt-4 sm:mt-2 text-center opacity-0 transition-all duration-1000 ease-out"
       >
         <h1 className="text-balance font-mono text-5xl font-bold leading-tight tracking-tight text-primary-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-          {"Код 95 под ключ"}
+          {"Код 95 под ключ"}
         </h1>
         <p className="mx-auto mt-6 max-w-3xl font-sans text-lg leading-relaxed text-primary-foreground/90 sm:text-xl">
           {"Быстрое оформление и сопровождение до получения сертификата"}

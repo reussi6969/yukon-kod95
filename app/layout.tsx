@@ -21,9 +21,9 @@ const montserrat = Montserrat({
 })
 
 const SITE_URL = 'https://www.yukod95.com'
-const SITE_TITLE = 'Yukon KOD 95 — Получи Код 95 для работы в Европе'
+const SITE_TITLE = 'Yukon KOD 95 — Получи Код 95 для работы в Европе'
 const SITE_DESCRIPTION =
-  'Помогаем водителям легально работать в Европе. Обучение онлайн, всего 1 визит в Краков. Короткий и длинный курс Код 95, замена прав, чип-карта.'
+  'Помогаем водителям легально работать в Европе. Обучение онлайн, всего 1 визит в Краков. Короткий и длинный курс Код 95, замена прав, чип-карта.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

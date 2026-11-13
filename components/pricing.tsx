@@ -10,7 +10,7 @@ function getPlans(longPromo: boolean) {
   return [
   {
     title: "Короткий курс",
-    subtitle: "КОД 95",
+    subtitle: "КОД 95",
     price: String(SHORT_COURSE_PRICE),
     oldPrice: null as string | null,
     currency: "PLN",
@@ -20,7 +20,7 @@ function getPlans(longPromo: boolean) {
       "Всего 1 визит в Краков",
       "Сдача медицинских анализов",
       "Подача документов",
-      "Официальный сертификат КОД 95",
+      "Официальный сертификат КОД 95",
       "Признан во всём Евросоюзе",
       "Поддержка на каждом этапе",
     ],
@@ -31,7 +31,7 @@ function getPlans(longPromo: boolean) {
   },
   {
     title: "Длинный курс",
-    subtitle: "КОД 95",
+    subtitle: "КОД 95",
     price: String(longPromo ? LONG_COURSE.promo : LONG_COURSE.regular),
     oldPrice: longPromo ? String(LONG_COURSE.regular) : null,
     currency: "PLN",
@@ -41,7 +41,7 @@ function getPlans(longPromo: boolean) {
       "Всего 1 визит в Краков",
       "Сдача медицинских анализов",
       "Подача документов",
-      "Официальный сертификат КОД 95",
+      "Официальный сертификат КОД 95",
       "Признан во всём Евросоюзе",
       "Поддержка на каждом этапе",
     ],
@@ -94,7 +94,7 @@ function FadeInSection({ children, delay = 0 }: { children: React.ReactNode; del
 
 function PlanSubtitle({ text, featured }: { text: string; featured: boolean }) {
   const cls = `font-mono text-xl font-bold tracking-wider ${featured ? "text-accent" : "text-accent"}`
-  if (text === "КОД 95") {
+  if (text === "КОД 95") {
     return (
       <span className={cls}>
         {"КОД "}
@@ -113,7 +113,7 @@ export function Pricing() {
 
         <FadeInSection>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-serif text-5xl font-bold text-foreground text-balance">
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-foreground text-balance">
               {"Цены"}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
@@ -122,10 +122,10 @@ export function Pricing() {
           </div>
         </FadeInSection>
 
-       <div className="mt-12 flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8 mx-auto max-w-6xl w-full [&>*]:flex-1 [&>*]:w-full [&>*]:max-w-[420px]">
-          {plans.map((plan, i) => (
+       <div className="mx-auto mt-14 grid w-full max-w-md grid-cols-1 gap-10 lg:max-w-6xl lg:grid-cols-3 lg:gap-6">
+          {plans.map((plan, i) => (
             <FadeInSection key={plan.title} delay={i * 120}>
-              <div className={`relative flex h-full flex-col rounded-2xl border transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+              <div className={`relative flex h-full flex-col rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
                 plan.featured ? "border-accent bg-foreground shadow-xl" : "border-border bg-background shadow-sm"
               }`}>
 
@@ -142,7 +142,7 @@ export function Pricing() {
 
                 <div className="flex flex-1 flex-col p-7 pt-8">
                   <div className="text-center">
-                    <h3 className={`font-serif text-4xl font-bold ${plan.featured ? "text-primary-foreground" : "text-foreground"}`}>
+                    <h3 className={`font-serif text-3xl font-bold ${plan.featured ? "text-primary-foreground" : "text-foreground"}`}>
                       {plan.title}
                     </h3>
                     <div className="mt-1">
@@ -200,7 +200,7 @@ export function Pricing() {
 
                   <div className="mt-8">
                     {plan.available ? (
-                      <button onClick={() => openLeadModal(plan.price ? `${plan.title} КОД 95` : undefined)} className={`flex w-full items-center justify-center rounded-lg px-6 py-4 text-base font-semibold transition-all hover:scale-105 ${
+                      <button onClick={() => openLeadModal(plan.price ? `${plan.title} КОД 95` : undefined)} className={`flex w-full items-center justify-center rounded-lg px-6 py-4 text-base font-semibold transition-all hover:scale-105 ${
                         plan.featured
                           ? "bg-accent text-white hover:bg-accent/90"
                           : "border-2 border-accent bg-transparent text-accent hover:bg-accent hover:text-white"

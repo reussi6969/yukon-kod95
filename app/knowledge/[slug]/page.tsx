@@ -160,7 +160,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 {"Нужна помощь с оформлением?"}
               </h3>
               <p className="mt-3 text-primary-foreground/70">
-                {"Мы поможем пройти весь путь — от медосмотра до получения КОД 95"}
+                {"Мы поможем пройти весь путь — от медосмотра до получения КОД 95"}
               </p>
               <LeadButton
                 title="Все просто!"

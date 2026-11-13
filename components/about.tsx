@@ -52,7 +52,7 @@ export function About() {
           {/* Текст */}
           <FadeInSection delay={150}>
             <div>
-              <h2 className="font-serif text-5xl font-bold text-foreground text-balance">
+              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-foreground text-balance">
                 {"О компании "}
                 <span className="font-mono text-2xl tracking-tight text-foreground sm:text-3xl md:text-4xl">{"YUKON"}</span>{" "}
                 <span className="font-mono text-2xl tracking-tight text-accent sm:text-3xl md:text-4xl">
@@ -74,18 +74,18 @@ export function About() {
         </div>
 
         {/* Статистика — увеличенный текст */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
           {stats.map((stat, i) => {
             const Icon = stat.icon
             return (
               <FadeInSection key={stat.label} delay={i * 100}>
-                <div className="flex flex-col items-center rounded-xl bg-background p-6 text-center shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <div className="flex h-full flex-col items-center rounded-xl bg-background p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-6">
                   <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-accent/10">
                     <Icon className="h-7 w-7 text-accent" />
                   </div>
                   <span className="font-sans font-black text-3xl text-foreground">{stat.value}</span>
                   {/* Увеличенный текст подписи */}
-                  <span className="mt-2 text-base text-muted-foreground">{stat.label}</span>
+                  <span className="mt-2 text-sm text-muted-foreground sm:text-base">{stat.label}</span>
                 </div>
               </FadeInSection>
             )
