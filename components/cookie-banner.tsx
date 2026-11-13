@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { X, Cookie, Shield, BarChart2 } from "lucide-react"
-
-const STORAGE_KEY = "yukon_cookie_consent"
-
-type ConsentState = "accepted" | "declined" | null
+import { X, Cookie, Shield, BarChart2, Megaphone } from "lucide-react"
+import { getConsent, setConsent, OPEN_SETTINGS_EVENT, type ConsentChoice } from "@/lib/consent"
+import { loadMetaPixel } from "@/lib/meta-pixel"
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false)
@@ -14,18 +12,26 @@ export function CookieBanner() {
   const [leaving, setLeaving] = useState(false)
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (!stored) {
+    // Согласие уже есть — запускаем пиксель (если человек его разрешил)
+    if (getConsent() === "accepted") loadMetaPixel()
+
+    let timer: ReturnType<typeof setTimeout> | undefined
+    if (!getConsent()) {
       // Небольшая задержка перед появлением
-      const timer = setTimeout(() => setVisible(true), 1200)
-      return () => clearTimeout(timer)
+      timer = setTimeout(() => setVisible(true), 1200)
     }
+
+    // Ссылка «Настройки cookie» в подвале снова открывает баннер
+    const open = () => { setExpanded(true); setLeaving(false); setVisible(true) }
+    window.addEventListener(OPEN_SETTINGS_EVENT, open)
+    return () => { if (timer) clearTimeout(timer); window.removeEventListener(OPEN_SETTINGS_EVENT, open) }
   }, [])
 
-  function dismiss(choice: ConsentState) {
+  function dismiss(choice: ConsentChoice) {
     setLeaving(true)
     setTimeout(() => {
-      localStorage.setItem(STORAGE_KEY, choice ?? "declined")
+      setConsent(choice)
+      if (choice === "accepted") loadMetaPixel()
       setVisible(false)
       setLeaving(false)
     }, 400)
@@ -35,7 +41,7 @@ export function CookieBanner() {
 
   return (
     <>
-      {/* Затемнённый фон — лёгкий */}
+      {/* Затемнённый фон — лёгкий. Клик мимо баннера = отказ от необязательных cookie */}
       <div
         className={`fixed inset-0 z-[9990] bg-foreground/20 backdrop-blur-[2px] transition-opacity duration-400 ${
           leaving ? "opacity-0" : "opacity-100"
@@ -45,13 +51,16 @@ export function CookieBanner() {
 
       {/* Баннер — снизу по центру */}
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookie-title"
         className={`fixed bottom-4 left-1/2 z-[9991] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 transition-all duration-400 ease-out sm:bottom-6 ${
           leaving
             ? "translate-y-8 opacity-0"
             : "translate-y-0 opacity-100"
         }`}
       >
-        <div className="overflow-hidden rounded-2xl border border-border bg-background shadow-2xl">
+        <div className="max-h-[85vh] overflow-y-auto rounded-2xl border border-border bg-background shadow-2xl">
 
           {/* Верхняя полоска — акцентный цвет */}
           <div className="h-1 w-full bg-gradient-to-r from-accent via-accent/70 to-accent/40" />
@@ -64,18 +73,18 @@ export function CookieBanner() {
                   <Cookie className="h-5 w-5 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-bold text-foreground">
+                  <h3 id="cookie-title" className="font-serif text-lg font-bold text-foreground">
                     {"Мы используем файлы cookie"}
                   </h3>
                   <p className="mt-0.5 text-sm text-muted-foreground">
-                    {"Для корректной работы сайта и аналитики"}
+                    {"Для работы сайта и рекламы"}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => dismiss("declined")}
                 className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                aria-label="Закрыть"
+                aria-label="Закрыть и отказаться от необязательных cookie"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -83,7 +92,7 @@ export function CookieBanner() {
 
             {/* Основной текст */}
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              {"Мы используем cookie для обеспечения работы сайта и анализа посещаемости (Vercel Analytics). Ваши данные не передаются третьим лицам в рекламных целях."}
+              {"Необходимые cookie нужны для работы сайта. С вашего согласия мы также используем Meta Pixel (Facebook), чтобы измерять эффективность рекламы. Согласие можно отозвать в любой момент по ссылке «Настройки cookie» внизу сайта."}
             </p>
 
             {/* Раскрывающиеся детали */}
@@ -93,15 +102,22 @@ export function CookieBanner() {
                   <div className="flex items-start gap-3">
                     <Shield className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                     <div>
-                      <p className="text-sm font-semibold text-foreground">{"Необходимые cookie"}</p>
-                      <p className="text-xs text-muted-foreground">{"Обеспечивают базовую работу сайта. Всегда активны."}</p>
+                      <p className="text-sm font-semibold text-foreground">{"Необходимые — всегда активны"}</p>
+                      <p className="text-xs text-muted-foreground">{"Базовая работа сайта и запоминание вашего выбора в этом окне."}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <BarChart2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                     <div>
-                      <p className="text-sm font-semibold text-foreground">{"Аналитические cookie"}</p>
-                      <p className="text-xs text-muted-foreground">{"Vercel Analytics — анонимная статистика посещений. Помогает улучшать сайт."}</p>
+                      <p className="text-sm font-semibold text-foreground">{"Статистика — без cookie"}</p>
+                      <p className="text-xs text-muted-foreground">{"Vercel Analytics считает посещения анонимно, не сохраняет файлы на вашем устройстве и не узнаёт вас."}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Megaphone className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{"Маркетинговые — только с согласия"}</p>
+                      <p className="text-xs text-muted-foreground">{"Meta Pixel (Meta Platforms Ireland Ltd.): cookie _fbp, данные о посещении передаются Meta для измерения и показа рекламы."}</p>
                     </div>
                   </div>
                 </div>
@@ -122,7 +138,7 @@ export function CookieBanner() {
               {expanded ? "Скрыть детали ↑" : "Подробнее о cookie ↓"}
             </button>
 
-            {/* Кнопки действий */}
+            {/* Кнопки действий — равнозначные, отказ так же прост, как согласие */}
             <div className="mt-5 flex flex-col gap-2 sm:flex-row">
               <button
                 onClick={() => dismiss("accepted")}
@@ -132,7 +148,7 @@ export function CookieBanner() {
               </button>
               <button
                 onClick={() => dismiss("declined")}
-                className="flex-1 rounded-xl border-2 border-border py-3 text-sm font-semibold text-muted-foreground transition-all hover:scale-[1.02] hover:border-accent/40 hover:text-foreground"
+                className="flex-1 rounded-xl border-2 border-accent py-3 text-sm font-semibold text-accent transition-all hover:scale-[1.02] hover:bg-accent/5"
               >
                 {"Только необходимые"}
               </button>
@@ -141,5 +157,18 @@ export function CookieBanner() {
         </div>
       </div>
     </>
+  )
+}
+
+/** Ссылка для подвала: снова открыть настройки cookie */
+export function CookieSettingsLink({ className }: { className?: string }) {
+  return (
+    <button
+      type="button"
+      onClick={() => window.dispatchEvent(new CustomEvent(OPEN_SETTINGS_EVENT))}
+      className={className}
+    >
+      {"Настройки cookie"}
+    </button>
   )
 }

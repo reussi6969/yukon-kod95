@@ -2,6 +2,15 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { LeadModal } from "@/components/lead-modal"
 import { LeadButton } from "@/components/lead-button"
+
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Короткий курс КОД 95 — 799 zł",
+  description: "Короткий курс КОД 95 для водителей с категорией C/D, выданной до 09.09.2009. Онлайн-обучение, 1 визит в Краков, без экзамена. 799 zł.",
+  alternates: { canonical: "/services/korotkiy-kurs" },
+  openGraph: { title: "Короткий курс КОД 95 — 799 zł", description: "Короткий курс КОД 95 для водителей с категорией C/D, выданной до 09.09.2009. Онлайн-обучение, 1 визит в Краков, без экзамена. 799 zł.", url: "/services/korotkiy-kurs" },
+}
 const breatheClass = "btn-breathe"
 
 export default function KorotkiyKursPage() {
@@ -44,7 +53,7 @@ export default function KorotkiyKursPage() {
         <div className="mx-auto max-w-4xl px-4 -mt-8">
           <div className="overflow-hidden rounded-2xl shadow-xl bg-secondary aspect-[16/7]">
             <img
-              src="https://i.postimg.cc/yNMLrhdg/Код_95_1.jpg"
+              src="/images/kod-95-1.webp"
               alt="Короткий курс КОД 95"
               className="h-full w-full object-cover"
             />
@@ -150,7 +159,7 @@ export default function KorotkiyKursPage() {
 
             <div className="overflow-hidden rounded-2xl shadow-xl bg-secondary aspect-[16/7] flex items-center justify-center border border-border">
   <img 
-    src="https://i.postimg.cc/PqgSFbxP/Код_95_2.jpg" 
+    src="/images/kod-95-2.webp" 
     alt="Код 95" 
     className="w-full h-full object-cover" 
   />

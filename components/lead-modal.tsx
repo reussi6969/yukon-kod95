@@ -34,6 +34,8 @@ export function LeadModal() {
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [agreed, setAgreed] = useState(false)
+  // Скрытое поле-ловушка для спам-ботов: человек его не видит и не заполняет
+  const [website, setWebsite] = useState("")
   const [status, setStatus] = useState<Status>("idle")
   const [nameError, setNameError] = useState("")
   const [phoneError, setPhoneError] = useState("")
@@ -47,7 +49,7 @@ export function LeadModal() {
       setOpen(true)
       setLeaving(false)
       setStatus("idle")
-      setName(""); setPhone(""); setAgreed(false)
+      setName(""); setPhone(""); setAgreed(false); setWebsite("")
       setNameError(""); setPhoneError("")
       setNameTouched(false); setPhoneTouched(false)
     }
@@ -95,7 +97,7 @@ setName(capitalized)
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), phone: phone.trim() }),
+        body: JSON.stringify({ name: name.trim(), phone: phone.trim(), service: title, website }),
       })
       if (res.ok) {
   window.location.href = "/thank-you"
@@ -125,7 +127,7 @@ setName(capitalized)
                   {"Оставьте свои контакты, мы с вами свяжемся!"}
                 </p>
               </div>
-              <button onClick={close}
+              <button onClick={close} aria-label="Закрыть"
                 className="ml-3 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors hover:bg-white/20 hover:text-white">
                 <X className="h-4 w-4" />
               </button>
@@ -145,6 +147,9 @@ setName(capitalized)
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
+                <input type="text" name="website" value={website} onChange={(e) => setWebsite(e.target.value)}
+                  tabIndex={-1} autoComplete="off" aria-hidden="true"
+                  style={{ position: "absolute", left: "-10000px", width: 1, height: 1, opacity: 0 }} />
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="lead-name" className="hidden text-base font-medium text-foreground sm:block">{"Ваше имя"}</label>
                   <div className="relative">

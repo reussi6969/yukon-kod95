@@ -2,6 +2,15 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { LeadModal } from "@/components/lead-modal"
 import { LeadButton } from "@/components/lead-button"
+
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Приглашение на рабочую визу в Польшу",
+  description: "Оформление приглашения для получения рабочей визы в Польшу для водителей. Быстро и надёжно.",
+  alternates: { canonical: "/services/priglashenie-na-vizu" },
+  openGraph: { title: "Приглашение на рабочую визу в Польшу", description: "Оформление приглашения для получения рабочей визы в Польшу для водителей. Быстро и надёжно.", url: "/services/priglashenie-na-vizu" },
+}
 const breatheClass = "btn-breathe"
 
 export default function PriglashenieNaVizuPage() {
@@ -39,7 +48,7 @@ export default function PriglashenieNaVizuPage() {
         <div className="mx-auto max-w-4xl px-4 -mt-8">
           <div className="overflow-hidden rounded-2xl shadow-xl bg-secondary aspect-[16/7] flex items-center justify-center border border-border">
   <img 
-    src="https://i.postimg.cc/wBCwb5vf/Приглашения_на_визу.jpg" 
+    src="/images/priglasheniya-na-vizu.webp" 
     alt="Приглашение на визу" 
     className="w-full h-full object-cover" 
   />

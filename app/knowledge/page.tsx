@@ -6,8 +6,9 @@ import { Footer } from "@/components/footer"
 import { articles } from "@/lib/articles"
 
 export const metadata = {
-  title: "База знаний — Yukon KOD 95",
+  title: "База знаний",
   description: "Полезные статьи о КОД 95, работе в Европе и оформлении документов для водителей.",
+  alternates: { canonical: "/knowledge" },
 }
 
 function renderTitle(title: string) {

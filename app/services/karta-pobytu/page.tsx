@@ -2,6 +2,15 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { LeadModal } from "@/components/lead-modal"
 import { LeadButton } from "@/components/lead-button"
+
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Карта побыта (вид на жительство в Польше)",
+  description: "Помощь в получении карты побыта для водителей: документы, подача, сопровождение на каждом этапе.",
+  alternates: { canonical: "/services/karta-pobytu" },
+  openGraph: { title: "Карта побыта (вид на жительство в Польше)", description: "Помощь в получении карты побыта для водителей: документы, подача, сопровождение на каждом этапе.", url: "/services/karta-pobytu" },
+}
 const breatheClass = "btn-breathe"
 
 export default function KartaPobytuPage() {
@@ -39,7 +48,7 @@ export default function KartaPobytuPage() {
         <div className="mx-auto max-w-4xl px-4 -mt-8">
           <div className="overflow-hidden rounded-2xl shadow-xl bg-secondary aspect-[16/7] flex items-center justify-center border border-border">
   <img 
-    src="https://i.postimg.cc/85LZ8FJB/Карта_побыта.jpg" 
+    src="/images/karta-pobyta.webp" 
     alt="Карта побыта" 
     className="w-full h-full object-cover" 
   />

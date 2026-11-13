@@ -18,8 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = getArticleBySlug(slug)
   if (!article) return {}
   return {
-    title: `${article.title} — Yukon KOD 95`,
+    title: article.title,
     description: article.excerpt,
+    alternates: { canonical: `/knowledge/${slug}` },
+    openGraph: { type: "article", title: article.title, description: article.excerpt, url: `/knowledge/${slug}`, images: [article.image] },
   }
 }
 

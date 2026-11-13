@@ -2,6 +2,15 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { LeadModal } from "@/components/lead-modal"
 import { LeadButton } from "@/components/lead-button"
+
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Замена водительских прав на польские",
+  description: "Поможем заменить иностранное водительское удостоверение на польское (европейского образца). Полное сопровождение.",
+  alternates: { canonical: "/services/zamena-prav" },
+  openGraph: { title: "Замена водительских прав на польские", description: "Поможем заменить иностранное водительское удостоверение на польское (европейского образца). Полное сопровождение.", url: "/services/zamena-prav" },
+}
 const breatheClass = "btn-breathe"
 
 export default function ZamenaPravPage() {
@@ -39,7 +48,7 @@ export default function ZamenaPravPage() {
         <div className="mx-auto max-w-4xl px-4 -mt-8">
   <div className="overflow-hidden rounded-2xl shadow-xl bg-secondary aspect-[16/7] flex items-center justify-center border border-border">
     <img 
-      src="https://i.postimg.cc/Y0ZNhMWL/Zamena-prav.jpg" 
+      src="/images/zamena-prav.webp" 
       alt="Замена прав" 
       className="w-full h-full object-cover" 
     />

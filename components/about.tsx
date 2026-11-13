@@ -40,7 +40,7 @@ export function About() {
           <FadeInSection>
             <div className="relative overflow-hidden rounded-2xl shadow-lg">
               <img
-                src="https://i.postimg.cc/WbXwKDkC/ispol'zua-vnesnost'-devuska-202603221946.jpg"
+                src="/images/ispol-zua-vnesnost-devuska-202603221946.webp"
                 alt="Краков, Польша — город где базируется Yukon KOD 95"
                 className="h-auto w-full object-cover"
                 width={700}

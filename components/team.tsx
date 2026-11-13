@@ -7,19 +7,19 @@ const managers = [
   {
     name: "Марина",
     role: "Менеджер",
-    image: "https://i.postimg.cc/1z86rzMm/IMG-3010.jpg",
+    image: "/images/img-3010.webp",
     phone: "+48 452 650 325",
   },
   {
     name: "Никита",
     role: "Менеджер",
-    image: "https://i.postimg.cc/tg86SHMp/Ava-best-2026.png",
+    image: "/images/ava-best-2026.webp",
     phone: "",
   },
   {
     name: "Анастасия",
     role: "Менеджер",
-    image: "https://i.postimg.cc/nrJDxGxv/BEST-b2f35zb2f35.png",
+    image: "/images/best-b2f35zb2f35.webp",
     phone: "",
   },
 ]

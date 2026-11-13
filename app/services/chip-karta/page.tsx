@@ -2,6 +2,15 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { LeadModal } from "@/components/lead-modal"
 import { LeadButton } from "@/components/lead-button"
+
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Чип-карта тахографа для водителя в Польше",
+  description: "Оформление чип-карты водителя для цифрового тахографа в Польше. Нужна для легальной работы водителем в ЕС. Поможем подать документы.",
+  alternates: { canonical: "/services/chip-karta" },
+  openGraph: { title: "Чип-карта тахографа для водителя в Польше", description: "Оформление чип-карты водителя для цифрового тахографа в Польше. Нужна для легальной работы водителем в ЕС. Поможем подать документы.", url: "/services/chip-karta" },
+}
 const breatheClass = "btn-breathe"
 
 export default function ChipKartaPage() {
@@ -39,7 +48,7 @@ export default function ChipKartaPage() {
         <div className="mx-auto max-w-4xl px-4 -mt-8">
   <div className="overflow-hidden rounded-2xl shadow-xl bg-secondary aspect-[16/7] flex items-center justify-center border border-border">
     <img 
-      src="https://i.postimg.cc/zfsxPwBL/Чип_карта.jpg" 
+      src="/images/chip-karta.webp" 
       alt="Чип-карта" 
       className="w-full h-full object-cover" 
     />

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Dela_Gothic_One, Playfair_Display, Montserrat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import Script from 'next/script'
+import { CookieBanner } from '@/components/cookie-banner'
 
 const delaGothicOne = Dela_Gothic_One({
   weight: '400',
@@ -20,15 +20,52 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 })
 
+const SITE_URL = 'https://www.yukod95.com'
+const SITE_TITLE = 'Yukon KOD 95 — Получи Код 95 для работы в Европе'
+const SITE_DESCRIPTION =
+  'Помогаем водителям легально работать в Европе. Обучение онлайн, всего 1 визит в Краков. Короткий и длинный курс Код 95, замена прав, чип-карта.'
+
 export const metadata: Metadata = {
-  title: 'Yukon KOD 95 — Получи Код 95 для работы в Европе',
-  description:
-    'Помогаем водителям легально работать в Европе. Обучение онлайн, всего 1 визит в Краков. Короткий и длинный курс Код 95, замена прав, чип-карта.',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: '%s — Yukon KOD 95',
+  },
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    type: 'website',
+    locale: 'ru_RU',
+    url: SITE_URL,
+    siteName: 'Yukon KOD 95',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
   verification: {
     other: {
       "facebook-domain-verification": "waunt6mkeis2xdtmwmr64cf7s4ntad",
     },
   },
+}
+
+// Данные о компании для Google (карточка организации в поиске)
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'Yukon KOD 95',
+  legalName: 'YUKON INTERNATIONAL GROUP Sp. z o.o.',
+  url: SITE_URL,
+  email: 'kod95@yukon.com.pl',
+  telephone: '+48452650325',
+  vatID: 'PL9452250355',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'al. 29 Listopada 130/421',
+    postalCode: '31-406',
+    addressLocality: 'Kraków',
+    addressCountry: 'PL',
+  },
+  sameAs: ['https://www.instagram.com/yukon_kod_95/'],
 }
 
 export const viewport: Viewport = {
@@ -46,33 +83,14 @@ export default function RootLayout({
   <html lang="ru">
     <body className={`${delaGothicOne.variable} ${playfairDisplay.variable} ${montserrat.variable} font-sans antialiased`}>
       
-      <Script id="fb-pixel" strategy="afterInteractive">
-        {`
-          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-          (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-          
-          // Вот эта команда ЖЕСТКО убивает SubscribedButtonClick и прочий мусор
-          fbq('set', 'autoConfig', false, '1292910256020888'); 
-          
-          fbq('init', '1292910256020888'); 
-          fbq('track', 'PageView');
-        `}
-      </Script>
-
-      {/* Вставляем noscript сразу после Script или в начало body */}
-      <noscript>
-        <img 
-          height="1" 
-          width="1" 
-          style={{ display: 'none' }} 
-          src="https://www.facebook.com/tr?id=1292910256020888&ev=PageView&noscript=1" 
-        />
-      </noscript>
-
       {children}
+      <CookieBanner />
+      {/* Статистика посещений без cookie */}
+      <Analytics />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </body>
   </html>
 );

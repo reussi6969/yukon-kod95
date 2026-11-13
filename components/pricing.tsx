@@ -4,12 +4,15 @@ import { openLeadModal } from "@/components/lead-modal"
 
 import { useEffect, useRef, useState } from "react"
 import { Check, Clock } from "lucide-react"
+import { SHORT_COURSE_PRICE, LONG_COURSE, isLongCoursePromoActive } from "@/lib/prices"
 
-const plans = [
+function getPlans(longPromo: boolean) {
+  return [
   {
     title: "Короткий курс",
     subtitle: "КОД 95",
-    price: "799",
+    price: String(SHORT_COURSE_PRICE),
+    oldPrice: null as string | null,
     currency: "PLN",
     description: "Для водителей с категорией C, выданной до 09.09.2009 года",
     features: [
@@ -29,7 +32,8 @@ const plans = [
   {
     title: "Длинный курс",
     subtitle: "КОД 95",
-    price: "XXX",
+    price: String(longPromo ? LONG_COURSE.promo : LONG_COURSE.regular),
+    oldPrice: longPromo ? String(LONG_COURSE.regular) : null,
     currency: "PLN",
     description: "Для водителей с категорией C, выданной после 09.09.2009 года",
     features: [
@@ -41,15 +45,16 @@ const plans = [
       "Признан во всём Евросоюзе",
       "Поддержка на каждом этапе",
     ],
-    available: false,
+    available: true,
     featured: false,
-    badge: "Скоро",
-    cta: "Скоро доступен",
+    badge: longPromo ? `Скидка ${LONG_COURSE.promoLabel}` : null,
+    cta: "Записаться",
   },
   {
     title: "Доп. услуги",
     subtitle: "Пакет",
     price: null,
+    oldPrice: null,
     currency: "",
     description: "Замена прав, чип-карта, карта побыта и другое",
     features: [
@@ -65,6 +70,7 @@ const plans = [
     cta: "Узнать цену",
   },
 ]
+}
 
 function FadeInSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -100,6 +106,7 @@ function PlanSubtitle({ text, featured }: { text: string; featured: boolean }) {
 }
 
 export function Pricing() {
+  const plans = getPlans(isLongCoursePromoActive())
   return (
     <section id="pricing" className="bg-secondary pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="mx-auto max-w-7xl px-4">
@@ -115,9 +122,8 @@ export function Pricing() {
           </div>
         </FadeInSection>
 
-       <div className="mt-12 flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8 mx-auto max-w-4xl w-full [&>*]:flex-1 [&>*]:w-full [&>*]:max-w-[420px]">
+       <div className="mt-12 flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8 mx-auto max-w-6xl w-full [&>*]:flex-1 [&>*]:w-full [&>*]:max-w-[420px]">
           {plans.map((plan, i) => (
-            plan.title === "Длинный курс" ? null :
             <FadeInSection key={plan.title} delay={i * 120}>
               <div className={`relative flex h-full flex-col rounded-2xl border transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                 plan.featured ? "border-accent bg-foreground shadow-xl" : "border-border bg-background shadow-sm"
@@ -125,7 +131,7 @@ export function Pricing() {
 
                 {plan.badge && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1 text-sm font-semibold ${
+                    <span className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-1 text-sm font-semibold ${
                       plan.available ? "bg-accent text-white" : "bg-muted text-muted-foreground"
                     }`}>
                       {!plan.available && <Clock className="h-3.5 w-3.5" />}
@@ -151,12 +157,22 @@ export function Pricing() {
                   <div className="my-6 text-center">
                     {plan.price ? (
                       <>
+                        {plan.oldPrice && (
+                          <span className={`mr-3 font-sans text-3xl font-medium line-through ${plan.featured ? "text-primary-foreground/50" : "text-muted-foreground"}`}>
+                            {plan.oldPrice}
+                          </span>
+                        )}
                         <span className={`font-sans font-black text-6xl ${plan.featured ? "text-primary-foreground" : "text-foreground"}`}>
                           {plan.price}
                         </span>
                         <span className={`ml-2 text-lg font-medium ${plan.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
                           {plan.currency}
                         </span>
+                        {plan.oldPrice && (
+                          <p className={`mt-2 text-xs ${plan.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
+                            {`Самая низкая цена за 30 дней до скидки: ${plan.oldPrice} PLN`}
+                          </p>
+                        )}
                       </>
                     ) : (
                       <span className={`font-sans font-black text-4xl ${plan.featured ? "text-primary-foreground" : "text-foreground"}`}>
@@ -184,7 +200,7 @@ export function Pricing() {
 
                   <div className="mt-8">
                     {plan.available ? (
-                      <button onClick={() => openLeadModal()} className={`flex w-full items-center justify-center rounded-lg px-6 py-4 text-base font-semibold transition-all hover:scale-105 ${
+                      <button onClick={() => openLeadModal(plan.price ? `${plan.title} КОД 95` : undefined)} className={`flex w-full items-center justify-center rounded-lg px-6 py-4 text-base font-semibold transition-all hover:scale-105 ${
                         plan.featured
                           ? "bg-accent text-white hover:bg-accent/90"
                           : "border-2 border-accent bg-transparent text-accent hover:bg-accent hover:text-white"

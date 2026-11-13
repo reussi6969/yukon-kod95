@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { Services } from "@/components/services"
@@ -8,8 +9,12 @@ import { Pricing } from "@/components/pricing"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
 import { FloatingButtons } from "@/components/floating-buttons"
-import { CookieBanner } from "@/components/cookie-banner"
 import { LeadModal } from "@/components/lead-modal"
+
+export const metadata: Metadata = { alternates: { canonical: "/" } }
+
+// Перестраиваем страницу раз в час, чтобы цена по акции сама сменилась после её окончания
+export const revalidate = 3600
 
 export default function Home() {
   return (
@@ -26,7 +31,6 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingButtons />
-      <CookieBanner />
       <LeadModal />
     </>
   )

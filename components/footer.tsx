@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { MapEmbed } from "@/components/map-embed"
+import { CookieSettingsLink } from "@/components/cookie-banner"
 
 export function Footer() {
   return (
@@ -30,6 +32,7 @@ export function Footer() {
               <Link href="/documents#privacy" className="text-base text-muted-foreground transition-colors hover:text-accent">{"Политика конфиденциальности"}</Link>
               <Link href="/documents#terms" className="text-base text-muted-foreground transition-colors hover:text-accent">{"Условия предоставления услуг"}</Link>
               <Link href="/documents#agreement" className="text-base text-muted-foreground transition-colors hover:text-accent">{"Пользовательское соглашение"}</Link>
+              <CookieSettingsLink className="text-left text-base text-muted-foreground transition-colors hover:text-accent" />
             </div>
           </div>
 
@@ -37,23 +40,14 @@ export function Footer() {
           <div className="flex flex-col gap-5">
             <h3 className="font-serif text-3xl font-bold text-foreground">{"Наш офис"}</h3>
             <div className="overflow-hidden rounded-xl border border-border">
-              <iframe
-                title="Yukon KOD 95 office location"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=al.+29+Listopada+130%2F421%2C+31-406+Krak%C3%B3w%2C+Polska&zoom=16"
-                width="100%"
-                height="260"
-                style={{ border: 0, display: "block" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <MapEmbed />
             </div>
           </div>
 
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-center">
-          <p className="text-sm text-muted-foreground">{"© 2026 Yukon KOD 95. Все права защищены."}</p>
+          <p className="text-sm text-muted-foreground">{`© ${new Date().getFullYear()} YUKON INTERNATIONAL GROUP Sp. z o.o. · NIP 9452250355 · Все права защищены.`}</p>
         </div>
       </div>
     </footer>

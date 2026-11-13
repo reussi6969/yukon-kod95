@@ -3,23 +3,26 @@
 import { useEffect, useRef, useState } from "react"
 import { BookOpen, GraduationCap, CreditCard, FileText, Globe, IdCard } from "lucide-react"
 import { openLeadModal } from "@/components/lead-modal"
+import { SHORT_COURSE_PRICE, LONG_COURSE, isLongCoursePromoActive } from "@/lib/prices"
 
 const services = [
   {
     icon: BookOpen,
     title: "Короткий курс",
     description: "Для водителей с категорией C, выданной до 09.09.2009 года. Ускоренная программа обучения для быстрого получения квалификации.",
-    image: "https://i.postimg.cc/s228xyF5/Korotkij-kurs.jpg",
+    image: "/images/korotkij-kurs.webp",
     featured: true,
     available: true,
+    course: "short",
   },
   {
     icon: GraduationCap,
     title: "Длинный курс",
     description: "Для водителей с категорией C, выданной после 09.09.2009 года. Полный курс обучения с теорией и практикой.",
-    image: "https://i.postimg.cc/m2N6ShBS/Dlinnyj-kurs.jpg",
+    image: "/images/dlinnyj-kurs.webp",
     featured: true,
-    available: false,
+    available: true,
+    course: "long",
   },
   {
     icon: IdCard,
@@ -63,6 +66,23 @@ function AnimatedCard({ children, delay = 0 }: { children: React.ReactNode; dela
   )
 }
 
+function CardPrice({ course }: { course?: string }) {
+  if (course === "long" && isLongCoursePromoActive()) {
+    return (
+      <div className="flex flex-col items-center gap-1">
+        <span className="rounded-full bg-accent px-3 py-1 text-sm font-semibold text-white">{`Скидка ${LONG_COURSE.promoLabel}`}</span>
+        <div className="flex items-baseline gap-3">
+          <span className="font-sans text-2xl font-medium text-muted-foreground line-through">{`${LONG_COURSE.regular} zł`}</span>
+          <span className="font-sans text-4xl font-semibold text-foreground">{`${LONG_COURSE.promo} zł`}</span>
+        </div>
+        <span className="text-xs text-muted-foreground">{`Самая низкая цена за 30 дней до скидки: ${LONG_COURSE.regular} zł`}</span>
+      </div>
+    )
+  }
+  const price = course === "long" ? LONG_COURSE.regular : SHORT_COURSE_PRICE
+  return <span className="font-sans text-4xl font-semibold text-foreground/70">{`${price} zł`}</span>
+}
+
 export function Services() {
   return (
     <section id="services">
@@ -88,7 +108,6 @@ export function Services() {
           {/* ================= ЛЕВАЯ КОЛОНКА (Основной курс) ================= */}
           <div className="flex flex-col gap-8 w-full">
             {services.filter((s) => s.featured).map((service, i) => (
-              service.title === "Длинный курс" ? null : // Заглушка на месте!
               <AnimatedCard key={service.title} delay={i * 150}>
                 <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl">
                   <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
@@ -99,13 +118,13 @@ export function Services() {
                     <div className="flex flex-col items-center gap-3">
                       <h3 className="font-serif text-3xl font-bold text-card-foreground sm:text-4xl">{service.title}</h3>
                       <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">{service.description}</p>
-                      <span className="font-sans text-4xl font-semibold text-foreground/70">{"799 zł"}</span>
+                      <CardPrice course={service.course} />
                     </div>
                     <div className="flex flex-wrap justify-center gap-3 w-full">
                       {service.available !== false ? (
                         <>
                           <button
-                            onClick={() => openLeadModal()}
+                            onClick={() => openLeadModal(`${service.title} КОД 95`)}
                             className="btn-breathe rounded-lg px-6 py-3 text-base font-semibold text-white bg-accent transition-all duration-200 hover:scale-105 hover:bg-foreground hover:shadow-lg"
                           >
                             {"Записаться на курс"}
