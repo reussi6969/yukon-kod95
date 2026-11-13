@@ -1,0 +1,76 @@
+html {
+  font-size: 20px; /* Стандартно тут 16px. 18px сделает всё крупнее на ~12% */
+}
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #00416a;
+  --card: #f5f5f5;
+  --card-foreground: #00416a;
+  --popover: #ffffff;
+  --popover-foreground: #00416a;
+  --primary: #4689e1;           /* БЫЛО #00416a, ТЕПЕРЬ СИНИЙ */
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #00416a;
+  --muted: #f0f0f0;
+  --muted-foreground: #5a7a8a;
+  --accent: #4689e1;            /* ТОЖЕ СИНИЙ */
+  --accent-foreground: #ffffff;
+  --destructive: #e74c3c;
+  --destructive-foreground: #ffffff;
+  --border: #e0e0e0;
+  --input: #e0e0e0;
+  --ring: #4689e1;              /* КОЛЬЦО ФОКУСА ТОЖЕ СИНИМ */
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-montserrat), 'Montserrat', sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', serif;
+  --font-mono: var(--font-dela), 'Dela Gothic One', sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
