@@ -60,7 +60,7 @@ export function Team() {
           </div>
         </FadeInSection>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {managers.map((manager, i) => (
             <FadeInSection key={i} delay={i * 120}>
               <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl">

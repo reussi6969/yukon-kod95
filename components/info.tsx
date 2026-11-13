@@ -81,7 +81,7 @@ export function Info() {
           </div>
         </FadeInSection>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           {steps.map((step, i) => {
             const Icon = step.icon
             return (

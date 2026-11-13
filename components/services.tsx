@@ -109,7 +109,7 @@ export function Services() {
       <div className="mx-auto max-w-7xl px-4 pb-14 pt-14 md:pb-20 md:pt-14">
         
         {/* Курсы: короткий слева, длинный справа */}
-        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:gap-10">
+        <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2 lg:gap-10">
             {services.filter((s) => s.featured).map((service, i) => (
               <AnimatedCard key={service.title} delay={i * 150}>
                 <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl">
@@ -157,7 +157,7 @@ export function Services() {
             </h3>
           </AnimatedCard>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {services.filter((s) => !s.featured).map((service, i) => {
               const Icon = service.icon
               return (

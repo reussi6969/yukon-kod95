@@ -118,7 +118,7 @@ export function Contact() {
           </div>
         </FadeInSection>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2">
 
           {/* 5 больших кнопок */}
           <FadeInSection delay={100}>
@@ -147,41 +147,41 @@ export function Contact() {
 
           {/* Контакты — в отдельной панели */}
           <FadeInSection delay={200}>
-            <div className="flex h-full flex-col justify-center gap-7 rounded-2xl border border-white/10 bg-white/5 p-7 sm:p-9">
+            <div className="flex h-full min-w-0 flex-col justify-center gap-7 rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-9">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/20">
                   <Mail className="h-5 w-5 text-accent" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-serif text-2xl font-bold text-primary-foreground">{"Email"}</h3>
-                  <a href="mailto:kod95@yukon.com.pl" className="mt-1 block text-lg text-primary-foreground/80 transition-colors hover:text-accent">{"kod95@yukon.com.pl"}</a>
+                  <a href="mailto:kod95@yukon.com.pl" className="mt-1 block break-words text-base text-primary-foreground/80 sm:text-lg transition-colors hover:text-accent">{"kod95@yukon.com.pl"}</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/20">
                   <Phone className="h-5 w-5 text-accent" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-serif text-2xl font-bold text-primary-foreground">{"Телефон"}</h3>
-                  <a href="tel:+48452650325" className="mt-1 block text-lg text-primary-foreground/80 transition-colors hover:text-accent">{"+48 452 650 325"}</a>
+                  <a href="tel:+48452650325" className="mt-1 block break-words text-base text-primary-foreground/80 sm:text-lg transition-colors hover:text-accent">{"+48 452 650 325"}</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/20">
                   <Clock className="h-5 w-5 text-accent" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-serif text-2xl font-bold text-primary-foreground">{"Часы работы"}</h3>
-                  <p className="mt-1 text-lg text-primary-foreground/80">{"Пн – Пт: 09:00 – 16:00"}</p>
+                  <p className="mt-1 text-base text-primary-foreground/80 sm:text-lg">{"Пн – Пт: 09:00 – 16:00"}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/20">
                   <MapPin className="h-5 w-5 text-accent" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-serif text-2xl font-bold text-primary-foreground">{"Адрес офиса"}</h3>
-                  <p className="mt-1 text-lg text-primary-foreground/80">{"al. 29 Listopada 130/421,"}<br />{"31-406 Kraków, Polska"}</p>
+                  <p className="mt-1 text-base text-primary-foreground/80 sm:text-lg">{"al. 29 Listopada 130/421,"}<br />{"31-406 Kraków, Polska"}</p>
                 </div>
               </div>
             </div>

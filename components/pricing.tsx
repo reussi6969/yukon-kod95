@@ -154,22 +154,24 @@ export function Pricing() {
                   </div>
 
                   {/* Цена — text-6xl (уменьшено с 8xl) */}
-                  <div className="my-6 text-center">
+                  <div className="my-6 flex flex-wrap items-baseline justify-center gap-x-3 text-center">
                     {plan.price ? (
                       <>
                         {plan.oldPrice && (
-                          <span className={`mr-3 font-sans text-3xl font-medium line-through ${plan.featured ? "text-primary-foreground/50" : "text-muted-foreground"}`}>
+                          <span className={`whitespace-nowrap font-sans text-2xl font-medium line-through sm:text-3xl ${plan.featured ? "text-primary-foreground/50" : "text-muted-foreground"}`}>
                             {plan.oldPrice}
                           </span>
                         )}
-                        <span className={`font-sans font-black text-6xl ${plan.featured ? "text-primary-foreground" : "text-foreground"}`}>
-                          {plan.price}
-                        </span>
-                        <span className={`ml-2 text-lg font-medium ${plan.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
-                          {plan.currency}
+                        <span className="whitespace-nowrap">
+                          <span className={`font-sans text-5xl font-black sm:text-6xl ${plan.featured ? "text-primary-foreground" : "text-foreground"}`}>
+                            {plan.price}
+                          </span>
+                          <span className={`ml-2 text-lg font-medium ${plan.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
+                            {plan.currency}
+                          </span>
                         </span>
                         {plan.oldPrice && (
-                          <p className={`mt-2 text-xs ${plan.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
+                          <p className={`mt-2 basis-full text-xs ${plan.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
                             {`Самая низкая цена за 30 дней до скидки: ${plan.oldPrice} PLN`}
                           </p>
                         )}

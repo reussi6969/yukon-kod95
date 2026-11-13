@@ -34,7 +34,7 @@ export function About() {
   return (
     <section id="about" className="bg-secondary pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
 
           {/* Картинка */}
           <FadeInSection>

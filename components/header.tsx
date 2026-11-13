@@ -105,9 +105,9 @@ export function Header() {
 
       {/* Main nav */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="font-mono text-2xl font-bold tracking-tight text-foreground">{"YUKON"}</span>
-          <span className="font-mono text-2xl font-bold text-accent">
+        <Link href="/" className="flex shrink-0 items-center gap-2 whitespace-nowrap">
+          <span className="font-mono text-xl font-bold tracking-tight text-foreground min-[400px]:text-2xl">{"YUKON"}</span>
+          <span className="font-mono text-xl font-bold text-accent min-[400px]:text-2xl">
             {"KOD "}
             <span className="font-sans font-black text-[1.1em]">{"95"}</span>
           </span>

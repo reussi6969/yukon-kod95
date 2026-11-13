@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-secondary py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
 
           {/* Company info — без иконки Instagram */}
           <div className="flex flex-col gap-5">
